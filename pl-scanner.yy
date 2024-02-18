@@ -51,6 +51,9 @@ ALPHA [a-zA-Z]
 {ALPHA}+ { 
            return T_ID;
          }
+"+" { 
+           return OP_ADD;
+         }
 
 <<EOF>>  { return T_EOF ; }
 .        { printf ("Unexpected character\n"); exit (1); }
