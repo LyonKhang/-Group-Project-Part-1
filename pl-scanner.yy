@@ -95,10 +95,6 @@ ALPHA [a-zA-Z]
 {DIGIT}+    { 
             return L_INTEGER;
             }
-
-{ALPHA}+    { 
-            return T_ID;
-            }
         
 "@"[a-z][a-z0-9_]*  {
                     return T_ID;
