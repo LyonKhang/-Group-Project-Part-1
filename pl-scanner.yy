@@ -32,73 +32,128 @@ ALPHA [a-zA-Z]
 [ \t]+            
 [\n]+              
 
-";"      { 
-           return ';'; 
-         }
+";"         { 
+            return ';'; 
+            }
 
-"="      { 
-           return OP_ASSIGN; 
-         }
+"="         { 
+            return OP_ASSIGN; 
+            }
 
-"MAIN"   { 
-           return K_MAIN; 
-         }
+"+"         {
+            return OP_ADD;
+            }
 
-{DIGIT}+ { 
-           return L_INTEGER;
-         }
+"-"         {
+            return OP_SUB;
+            }
 
-{ALPHA}+ { 
-           return T_ID;
-         }
+"*"         {
+            return OP_MUL;
+            }
 
-@{ALPHA}+ { 
-           return T_ID;
-         }
+"/"         {
+            return OP_DIV;
+            }
 
+"+="        {
+            return OP_ADDINC;
+            }
+          
+"++"        {
+            return OP_PLUSPLUS;
+            }
+          
+"<="        {
+            return OP_LEQ;
+            }
+          
+">="        {
+            return OP_GEQ;
+            }
+          
+"=="        {
+            return OP_EQ;
+            }
+          
+"~="        {
+            return OP_DIFF;
+            }
+          
+"<"         {
+            return OP_LT;
+            }
+          
+">"         {
+            return OP_GT;
+            }
 
-"+" { 
-           return OP_ADD;
-         }
-"-" { 
-           return OP_SUB;
-         }
-"*" { 
-           return OP_MUL;
-         }
-"/" { 
-           return OP_DIV;
-         }
-"+=" { 
-           return OP_ADDINC;
-         }
-"++" { 
-           return OP_PLUSPLUS;
-         }
-"<=" { 
-           return OP_LEQ;
-         }
-">=" { 
-           return OP_GEQ;
-         }
-"==" { 
-           return OP_EQ;
-         }
-"~=" { 
-           return OP_DIFF;
-         }
-"<" { 
-           return OP_LT;
-         }
-">" { 
-           return OP_GT;
-         }
+"MAIN"      { 
+            return K_MAIN; 
+            }
 
+{DIGIT}+    { 
+            return L_INTEGER;
+            }
 
+{ALPHA}+    { 
+            return T_ID;
+            }
+        
+"@"[a-z][a-z0-9_]*  {
+                    return T_ID;
+                    }
 
+[+-]?{DIGIT}+"."{DIGIT}+    {
+                            return L_FLOAT;
+                            }
 
+"INTEGER"   { 
+            return K_INTEGER; 
+            }
 
+"FLOAT"     { 
+            return K_FLOAT; 
+            }
 
+"FOREACH"   { 
+            return K_FOREACH; 
+            }
+
+"BEGIN"     { 
+            return K_BEGIN; 
+            }
+
+"END"       { 
+            return K_END; 
+            }
+
+"REPEAT"    { 
+            return K_REPEAT; 
+            }
+
+"UNTIL"     { 
+            return K_UNTIL; 
+            }
+"WHILE"     { 
+            return K_WHILE; 
+            }
+
+"DECLARE"   { 
+            return K_DECLARE; 
+            }
+
+"IF"        { 
+            return K_IF; 
+            }
+
+"THEN"      { 
+            return K_THEN; 
+            }
+
+"PRINT"     { 
+            return K_PRINT; 
+            }
 
 <<EOF>>  { return T_EOF ; }
 .        { printf ("Unexpected character\n"); exit (1); }
